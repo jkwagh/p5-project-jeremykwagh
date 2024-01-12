@@ -4,11 +4,13 @@ import '../scss/styles.scss'
 // Import all of Bootstrap's JS
 import * as bootstrap from 'bootstrap'
 
-import React, { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import React from "react";
+import ReactDOM from 'react-dom/client'
+import App from "./components/App";
+import { createRoot } from "react-dom/client";
 
-function App() {
-    return <h1>Project Client</h1>;
-}
-  
-  export default App;
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+)
