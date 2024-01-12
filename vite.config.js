@@ -1,14 +1,15 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
-const path = require('path')
+import path from 'path';
 
-export default {
+export default defineConfig({
   root: path.resolve(__dirname, 'src'),
   build: {
     outDir: '../dist'
   },
   server: {
     port: 8080
-  }
-}
+  },
+  plugins: [react()],
+});
