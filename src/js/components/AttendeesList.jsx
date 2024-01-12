@@ -1,7 +1,8 @@
 import React from "react";
 import { useAppContext } from "./AppContext";
 
-const Attendees = () => {
+
+const AttendeesList = () => {
     const { attendees, setAttendees} = useAppContext();
 
     
@@ -10,4 +11,4 @@ const Attendees = () => {
     </div>
 }
 
-export default Attendees;
+export default AttendeesList;
