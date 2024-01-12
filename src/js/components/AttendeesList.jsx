@@ -1,14 +1,25 @@
-import React from "react";
-import { useAppContext } from "./AppContext";
-
+import React, { useState } from "react";
+import NavBar from "./NavBar";
+import { useApiContext } from "./AppContext";
+import Attendees from "./Attendees";
 
 const AttendeesList = () => {
-    const { attendees, setAttendees} = useAppContext();
-
     
-    return <div>
-        <h1>This is the Attendees List</h1>
-    </div>
+    const { attendees } = useApiContext();
+    const {attendeeID, setAttendeeID } = useState();
+
+    const attendeeDetails = attendees.map((attendee) => {
+        <Attendees key={attendee.id} attendee={attendee}/>
+    })
+    
+    return (
+        <div>
+            <h2>Attendees List</h2>
+            <ul className="attendee-list">
+                {attendeeDetails}
+            </ul>
+        </div>
+    )
 }
 
 export default AttendeesList;

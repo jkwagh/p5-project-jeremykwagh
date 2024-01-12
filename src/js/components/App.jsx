@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
-import { AppProvider } from "./AppContext";
 import Home from "./Home";
 import NavBar from "./NavBar";
 import Attendees from "./Attendees";
 import Schedule from "./Schedule";
 import SignUp from "./Signup";
 import AttendeesList from "./AttendeesList";
+import { ApiProvider } from "./AppContext";
 
 const App = () => {
     return ( 
         <Router>
-            <AppProvider>
+            <ApiProvider>
                 <div>
                     <NavBar/>
                     <Routes>
@@ -23,7 +23,7 @@ const App = () => {
                     <Route path="/signup" element={<SignUp />} />
                     </Routes>
                 </div>
-            </AppProvider>
+            </ApiProvider>
         </Router>
       
       );

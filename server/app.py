@@ -15,9 +15,11 @@ from models import Attendee, Activity, Speaker, Event, ActivityAttendee
 def index():
     return '<h1>Project Server</h1>'
 
+api = Api(app)
+
 class AllAttendees(Resource):
     def get(self):
-        response_body = [attendee.to_dict() for attendee in Attendee.query.all()]
+        response_body = [attendee.to_dict(only=('first_name', 'last_name')) for attendee in Attendee.query.all()]
         return make_response(response_body, 200)
     
     def post(self):
@@ -25,7 +27,7 @@ class AllAttendees(Resource):
             new_attendee = Attendee(first_name=request.json.get('first_name'), last_name=request.json.get('last_name'), organization=request.json.get('organization'), phone=request.json.get('phone'), email=request.json.get('email'), address=request.json.get('address'), password=request.json.get('password'))
             db.session.add(new_attendee)
             db.session.commit()
-            response_body = [new_attendee.to_dict(only=('first_name', 'last_name', 'phone', 'email', 'address', 'password', 'organization'))]
+            response_body = [new_attendee.to_dict()]
             return make_response(response_body, 201)
         except:
             response_body = {

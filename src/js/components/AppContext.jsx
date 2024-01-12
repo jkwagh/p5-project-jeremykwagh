@@ -1,28 +1,73 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-const AppContext = createContext();
+const ApiContext = createContext();
 
-export const AppProvider = ({ children }) => {
-  const [attendees, setAttendees] = useState([]);
+export const useApiContext = () => useContext(ApiContext);
+
+export const ApiProvider = ({ children }) => {
+  
+    const [attendees, setAttendees] = useState([]);
+    const [ userToEdit, setUserToEdit] = useState([]);
   
     useEffect(() => {
         fetch('/attendees')
         .then((resp) => resp.json())
-        .then((data) => {
-            setAttendees(data)
-        })
-        .then(console.log(attendees))
-        .catch((error) => {
-            console.log(`Error fetching attendees: ${error}`)
-        });
+        .then((data) => setAttendees(data))
     }, [])
 
+    const postData = (data) => {
+        fetch('/attendees', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then((resp) => resp.json())
+        .then((data) => setAttendees([...attendees, data]))
+    }
+
+    const patchData = (data) => {
+        fetch(`/attendees/${data.id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then((resp) => {
+            if(resp.ok) {
+                resp.json().then((data) => setAttendees(attendees.map(attendee => {
+                    if (attendee.id === data.id) {
+                        return data
+                    }
+                    else {
+                        return attendee
+                    }
+                })))
+            }
+        })
+    }
+
+    const deleteData = (id) => {
+        fetch(`/attendees/${id}`, {
+            method: 'DELETE'
+        })
+        .then((resp) => {
+            if(resp.ok){
+                alert("Deleted")
+            } else {
+                alert("Error: Unable to Delete")
+            }
+        })
+        
+    }
+
+
   return (
-    <AppContext.Provider value={{ attendees, setAttendees }}>
+    <ApiContext.Provider value={{ postData, patchData, attendees, userToEdit, deleteData }}>
       {children}
-    </AppContext.Provider>
+    </ApiContext.Provider>
   );
 };
-
-export const useAppContext = () => useContext(AppContext);

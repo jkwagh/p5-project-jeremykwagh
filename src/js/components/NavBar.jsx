@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const NavBar = () =>{
     return <div>
-        <nav className="Navbar">
+        <nav className="navbar">
             <div className="logo" onClick={() => Navigate('/home')}>
                 NavBar
             </div>

@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { useOutletContext } from 'react-router-dom'
+import React, { useContext, useState } from 'react'
+import { useApiContext } from './AppContext'
 import { useNavigate } from 'react-router-dom'
 
 const SignUp = () => {
-
+    const { postData } = useApiContext();
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -23,20 +23,11 @@ const SignUp = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addAttendee(formData);
+        postData(formData);
         navigate('/');
     }
 
-    const addAttendee = (e) => {
-        fetch('/attendees', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        })
-        .then((resp))
-    }
+    
     return (
         <div className='signup'>
             <form onSubmit={handleSubmit}>
@@ -53,7 +44,18 @@ const SignUp = () => {
                 <div className='form-group'>
                     <input type='text' name='phone' value={formData.phone} onChange={handleInputchange} placeholder='Enter your Phone Number!' required />
                 </div>
-                
+                <div className='form-group'>
+                    <input type='text' name='email' value={formData.email} onChange={handleInputchange} placeholder='Enter your Email Address!' required />
+                </div>
+                <div className='form-group'>
+                    <input type='text' name='address' value={formData.address} onChange={handleInputchange} placeholder='Enter your Address!' required />
+                </div>
+                <div className='form-group'>
+                    <input type='text' name='password' value={formData.password} onChange={handleInputchange} placeholder='Enter your Password!' required />
+                </div>
+                <button type='submit' className='btn'>
+                    Sign Up!
+                </button>
             </form>
         </div>
     )
