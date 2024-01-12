@@ -15,11 +15,9 @@ from models import Attendee, Activity, Speaker, Event, ActivityAttendee
 def index():
     return '<h1>Project Server</h1>'
 
-api = Api(app)
-
 class AllAttendees(Resource):
     def get(self):
-        response_body = [attendee.to_dict(rules=('-password')) for attendee in Attendee.query.all()]
+        response_body = [attendee.to_dict() for attendee in Attendee.query.all()]
         return make_response(response_body, 200)
     
     def post(self):
