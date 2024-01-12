@@ -76,7 +76,7 @@ class Activity(db.Model, SerializerMixin):
     time = db.Column(db.String(80), nullable = False)
     topic = db.Column(db.String(80), nullable = False)
     
-    activityattendee = db.relationship('ActivityAttendee', back_populates='attendees')
+    activityattendee = db.relationship('ActivityAttendee', back_populates='activity')
     
     def __repr__(self):
         return f"<Activity {self.id}: {self.name}: {self.location}: {self.time}: {self.topic}>"
@@ -118,9 +118,9 @@ class ActivityAttendee(db.Model, SerializerMixin):
     activity_id = db.Column(db.Integer, db.ForeignKey('activities.id'))
     speaker_id = db.Column(db.Integer, db.ForeignKey('speakers.id'))
     
-    activity = db.relationship('Activity', back_populates='activityattendees')
-    attendees = db.relationship('Attendee', back_populates='activityattendees')
-    speaker = db.relationship('Speaker', back_populates='activityattendees')
+    activity = db.relationship('Activity', back_populates='activityattendee')
+    attendees = db.relationship('Attendee', back_populates='activityattendee')
+    speaker = db.relationship('Speaker', back_populates='activityattendee')
     
     def __repr__(self):
         return f"<ActivityAttendee {self.id}: {self.attendee_id}: {self.activity_id}: {self.speaker_id}"
