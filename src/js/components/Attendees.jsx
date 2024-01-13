@@ -1,5 +1,6 @@
 import React from "react";
 import { useApiContext } from "./AppContext";
+import { useState, useEffect } from "react";
 
 const Attendees = ({ attendee }) => {
     const { first_name, last_name, organization, phone, email, address, password} = attendee
@@ -66,9 +67,9 @@ const Attendees = ({ attendee }) => {
 
     return <div>
         <h1>Attendee Details</h1>
-        {/* <button className="btton" onClick={onDeleteClick} value={userToEdit.id}>
+        <button className="btton" onClick={onDeleteClick} value={userToEdit.id}>
           Delete User
-        </button> */}
+        </button>
         <form className="edit-form" onSubmit={handleSubmit}>
             <label>First Name
                 <input type="text" name="first_name" placeholder={first_name} defaultValue={first_name} onChange={onChange}/>

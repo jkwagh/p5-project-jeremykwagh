@@ -11,13 +11,13 @@ export const ApiProvider = ({ children }) => {
     const [ userToEdit, setUserToEdit] = useState([]);
   
     useEffect(() => {
-        fetch('/attendees')
+        fetch('http://localhost:5555/attendees')
         .then((resp) => resp.json())
         .then((data) => setAttendees(data))
     }, [])
 
     const postData = (data) => {
-        fetch('/attendees', {
+        fetch('http://localhost:5555/attendees', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -29,7 +29,7 @@ export const ApiProvider = ({ children }) => {
     }
 
     const patchData = (data) => {
-        fetch(`/attendees/${data.id}`, {
+        fetch(`http://localhost:5555/attendees/${data.id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ export const ApiProvider = ({ children }) => {
     }
 
     const deleteData = (id) => {
-        fetch(`/attendees/${id}`, {
+        fetch(`http://localhost:5555/attendees/${id}`, {
             method: 'DELETE'
         })
         .then((resp) => {

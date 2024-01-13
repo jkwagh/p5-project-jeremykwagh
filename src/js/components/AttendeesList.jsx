@@ -3,14 +3,17 @@ import NavBar from "./NavBar";
 import { useApiContext } from "./AppContext";
 import Attendees from "./Attendees";
 
+
 const AttendeesList = () => {
     
     const { attendees } = useApiContext();
-    const {attendeeID, setAttendeeID } = useState();
+    console.log(attendees)
 
+    //figure out how to display attendees and click event to drill down
     const attendeeDetails = attendees.map((attendee) => {
-        <Attendees key={attendee.id} attendee={attendee}/>
+        return <Attendees key={attendee.id} attendee={attendee}/>
     })
+    console.log(attendeeDetails)
     
     return (
         <div>
