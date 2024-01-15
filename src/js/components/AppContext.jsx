@@ -1,5 +1,6 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ApiContext = createContext();
 
@@ -9,6 +10,7 @@ export const ApiProvider = ({ children }) => {
   
     const [attendees, setAttendees] = useState([]);
     const [ userToEdit, setUserToEdit] = useState([]);
+    const navigate = useNavigate();
   
     useEffect(() => {
         fetch('http://localhost:5555/attendees')
@@ -26,6 +28,12 @@ export const ApiProvider = ({ children }) => {
         })
         .then((resp) => resp.json())
         .then((data) => setAttendees([...attendees, data]))
+        .then(() => {
+            fetch('http://localhost:5555/attendees')
+            .then((resp) => resp.json())
+            .then((data) => setAttendees(data))
+        })
+        .then(() => navigate('/'))
     }
 
     const patchData = (data) => {
@@ -48,6 +56,12 @@ export const ApiProvider = ({ children }) => {
                 })))
             }
         })
+        .then(() => {
+            fetch('http://localhost:5555/attendees')
+            .then((resp) => resp.json())
+            .then((data) => setAttendees(data))
+        })
+        .then(() => navigate('/attendees'))
     }
 
     const deleteData = (id) => {
@@ -61,14 +75,29 @@ export const ApiProvider = ({ children }) => {
                 alert("Error: Unable to Delete")
             }
         })
+        .then(() => {
+            fetch('http://localhost:5555/attendees')
+            .then((resp) => resp.json())
+            .then((data) => setAttendees(data))
+        })
+        .then(() => navigate('/attendees'))
         
     }
 
     const attendeeData = (id) => {
         fetch(`http://localhost:5555/attendees/${id}`)
-        .then((resp) => resp.json())
-        .then((data) => setUserToEdit(data))
-    }
+          .then((resp) => {
+            if (!resp.ok) {
+              throw new Error(`Failed to fetch attendee data for ID ${id}`);
+            }
+            return resp.json();
+          })
+          .then((data) => setUserToEdit(data))
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+      
 
 
   return (

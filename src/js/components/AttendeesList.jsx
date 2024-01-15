@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const AttendeesList = () => {
     
-    const { attendees, attendeeData, userToEdit, setUserToEdit } = useApiContext();
+    const { attendees } = useApiContext();
     const navigate = useNavigate();
 
     //figure out how to display attendees and click event to drill down
@@ -16,11 +16,7 @@ const AttendeesList = () => {
     //     </li>
     //   ));
     //console.log(attendeeDetails)
-    useEffect(()=> {
-        setUserToEdit()
-    }, [])
     const handleNavigate = (id) => {
-        attendeeData(id)
         navigate(`/attendees/${id}`)
     }
 
@@ -37,6 +33,7 @@ const AttendeesList = () => {
               </li>
             ))}
           </ul>
+          
         </div>
       );
 }
