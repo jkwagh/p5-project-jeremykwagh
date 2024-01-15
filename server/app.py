@@ -92,7 +92,7 @@ class AllActivities(Resource):
             new_activity = Activity(name=request.json.get('name'))
             db.sessin.add(new_activity)
             db.session.commit()
-            response_body = [new_activity.to_dict(only=('name',))]
+            response_body = [new_activity.to_dict()]
             return make_response(response_body, 201)
         except:
             response_body = {

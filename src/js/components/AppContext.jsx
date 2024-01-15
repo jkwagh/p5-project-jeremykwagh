@@ -9,6 +9,7 @@ export const useApiContext = () => useContext(ApiContext);
 export const ApiProvider = ({ children }) => {
   
     const [attendees, setAttendees] = useState([]);
+    const [activities, setActivities] = useState([]);
     const [ userToEdit, setUserToEdit] = useState([]);
     const navigate = useNavigate();
   
@@ -17,6 +18,13 @@ export const ApiProvider = ({ children }) => {
         .then((resp) => resp.json())
         .then((data) => setAttendees(data))
     }, [])
+
+    useEffect(() => {
+        fetch('http://localhost:5555/activities')
+        .then((resp) => resp.json())
+        .then((data) => setActivities(data))
+    }, [])
+
 
     const postData = (data) => {
         fetch('http://localhost:5555/attendees', {
@@ -101,7 +109,7 @@ export const ApiProvider = ({ children }) => {
 
 
   return (
-    <ApiContext.Provider value={{ postData, patchData, attendees, userToEdit, deleteData, attendeeData, setUserToEdit}}>
+    <ApiContext.Provider value={{ postData, patchData, attendees, userToEdit, deleteData, attendeeData, setUserToEdit, activities}}>
       {children}
     </ApiContext.Provider>
   );
