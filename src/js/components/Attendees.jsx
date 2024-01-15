@@ -1,6 +1,7 @@
 import React from "react";
 import { useApiContext } from "./AppContext";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Attendees = ({ attendee }) => {
     const { first_name, last_name, organization, phone, email, address, password} = attendee
@@ -62,9 +63,9 @@ const Attendees = ({ attendee }) => {
     };
 
     const onDeleteClick = () => {
-        deleteData(attendee.id)
+        console.log(attendee.id)
     }
-
+    // console.log(attendee)
     return <div>
         <h1>Attendee Details</h1>
         <button className="btton" onClick={onDeleteClick} value={userToEdit.id}>
@@ -101,6 +102,7 @@ const Attendees = ({ attendee }) => {
             <br />
           <button className= "btton"type="submit">Submit</button>
         </form>
+        console.log
     </div>
 }
 

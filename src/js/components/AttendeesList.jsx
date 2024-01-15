@@ -10,16 +10,18 @@ const AttendeesList = () => {
     console.log(attendees)
 
     //figure out how to display attendees and click event to drill down
-    const attendeeDetails = attendees.map((attendee) => {
-        return <Attendees key={attendee.id} attendee={attendee}/>
-    })
-    console.log(attendeeDetails)
+    const attendeeDetails = attendees.map((attendee) => (
+        <li key={attendee.id}>
+          <Attendees attendee={attendee} />
+        </li>
+      ));
+    //console.log(attendeeDetails)
     
     return (
         <div>
             <h2>Attendees List</h2>
-            <ul className="attendee-list">
-                {attendeeDetails}
+            <ul>
+                {attendeeDetails} 
             </ul>
         </div>
     )
