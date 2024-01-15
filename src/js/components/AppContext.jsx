@@ -64,15 +64,15 @@ export const ApiProvider = ({ children }) => {
         
     }
 
-    // const attendeeData = (id) => {
-    //     fetch(`http://localhost:5555/attendees/${id}`)
-    //     .then((resp) => resp.json())
-    //     .then((data) => setAttendees(data))
-    // }
+    const attendeeData = (id) => {
+        fetch(`http://localhost:5555/attendees/${id}`)
+        .then((resp) => resp.json())
+        .then((data) => setUserToEdit(data))
+    }
 
 
   return (
-    <ApiContext.Provider value={{ postData, patchData, attendees, userToEdit, deleteData }}>
+    <ApiContext.Provider value={{ postData, patchData, attendees, userToEdit, deleteData, attendeeData, setUserToEdit}}>
       {children}
     </ApiContext.Provider>
   );

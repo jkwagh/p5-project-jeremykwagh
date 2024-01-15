@@ -43,7 +43,7 @@ class AttendeeById(Resource):
         attendee = Attendee.query.filter(Attendee.id == id).first()
         
         if attendee:
-            response_body = attendee.to_dict(rules=('-password'))
+            response_body = attendee.to_dict()
             return make_response(response_body, 200)
         else:
             response_body = {
@@ -58,7 +58,7 @@ class AttendeeById(Resource):
             
             db.session.commit()
             
-            response_body = attendee.to_dict(only=('first_name', 'last_name', 'email', 'password', 'address', 'phone', 'id'))
+            response_body = attendee.to_dict()
             return make_response(response_body, 200)
         else:
             response_body = {
