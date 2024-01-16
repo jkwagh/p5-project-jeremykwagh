@@ -10,7 +10,8 @@ export const ApiProvider = ({ children }) => {
   
     const [attendees, setAttendees] = useState([]);
     const [activities, setActivities] = useState([]);
-    const [ userToEdit, setUserToEdit] = useState([]);
+    const [userToEdit, setUserToEdit] = useState([]);
+    const [loginUser, setLoginUser] = useState([]);
     const navigate = useNavigate();
   
     useEffect(() => {
@@ -105,6 +106,26 @@ export const ApiProvider = ({ children }) => {
             console.error(error);
           });
       };
+
+    const handleLogin = (login) => {
+        fetch('http://localhost:5555/login', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(login) 
+        })
+        .then((resp) => {
+            if(resp.ok){
+                resp.json().then(data => {
+                    setLoginUser(data)
+                })
+            }
+            else if(resp.status ===401){
+                alert("Error: Invalid Login")
+            }
+        })
+    }
       
 
 

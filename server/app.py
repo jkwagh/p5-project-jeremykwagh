@@ -212,12 +212,39 @@ api.add_resource(SpeakerById, '/speakers/<int:id>')
         
 class AllActivityAttendee(Resource):
     def get(self):
+        response_body = [activityattendee.to_dict() for activityattendee in ActivityAttendee.query.all()]
+        return make_response(response_body, 200)
+    
+    def post(self):
+        try:
+            new_activityattendee = ActivityAttendee(attendee_id=request.json['attende_id'], activity_id=request.json['activity_id'], speaker_id=['speaker_id'])
+            return make_response(new_activityattendee.to_dict(), 201)
+        except:
+            response_body = {
+                'error': 'ActivityAttendee could not be created'
+            }
+            return make_response(response_body, 400)
+    
+api.add_resource(AllActivityAttendee, '/activityattendee')
+
+class Login(Resource):
+    def get(self):
         pass
     
     def post(self):
-        pass
-    
-api.add_resource(AllActivityAttendee, '/activityattendee')
+        attendee = Attendee.query.filter(Attendee.email == request.get_json()['email']).first()
+        
+        if attendee:
+            session['attendee_id'] = attendee.id
+            response_body = attendee.to_dict()
+            return make_response(response_body, 201)
+        else:
+            response_body = {
+                'error': 'Invalid email address!'
+            }
+        
+api.add_resource(Login, '/login')
+        
 
 if __name__ == '__main__': 
     app.run(port=5555, debug=True)

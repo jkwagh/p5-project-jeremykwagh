@@ -7,6 +7,7 @@ import Schedule from "./Schedule";
 import SignUp from "./Signup";
 import AttendeesList from "./AttendeesList";
 import { ApiProvider } from "./AppContext";
+import Login from "./Login";
 
 const App = () => {
     return ( 
@@ -21,6 +22,7 @@ const App = () => {
                         <Route path="/schedule" element={<Schedule />} />
                         <Route path="/schedule/:id" element={<AttendeePage />} />
                         <Route path="/signup" element={<SignUp />} />
+                        <Route path="/login" element={<Login />} />
                     </Routes>
                 </div>
             </ApiProvider>
