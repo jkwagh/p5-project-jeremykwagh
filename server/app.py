@@ -179,14 +179,45 @@ class SpeakerById(Resource):
             }
     
     def patch(self, id):
-        pass
+        speaker = Speaker.query.filter(Speaker.id == id).first()
+        if speaker:
+            for attr in request.json:
+                setattr(speaker, attr, request.json.get(attr))
+            
+            db.session.commit()
+            
+            response_body = speaker.to_dict()
+            return make_response(response_body, 200)
+        else:
+            response_body = {
+                'error': 'Speaker not found'
+            }
+            return make_response(response_body, 404)
     
     def delete(self, id):
-        pass
+        speaker = Speaker.query.filter(Speaker.id == id).first()
+        
+        if speaker:
+            db.session.delete(speaker)
+            db.session.commit()
+            response_body = {}
+            return make_response(response_body, 204)
+        else: 
+            response_body = {
+                'error': 'Speaker not found'
+            }
+            return make_response(response_body, 404)
     
 api.add_resource(SpeakerById, '/speakers/<int:id>')
         
+class AllActivityAttendee(Resource):
+    def get(self):
+        pass
     
+    def post(self):
+        pass
+    
+api.add_resource(AllActivityAttendee, '/activityattendee')
 
 if __name__ == '__main__': 
     app.run(port=5555, debug=True)
