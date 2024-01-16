@@ -9,13 +9,6 @@ const AttendeesList = () => {
     const { attendees } = useApiContext();
     const navigate = useNavigate();
 
-    //figure out how to display attendees and click event to drill down
-    // const attendeeDetails = attendees.map((attendee) => (
-    //     <li key={attendee.id} onClick={() => handleOnClick(attendee.id)}>
-    //       <Attendees attendee={attendee} />
-    //     </li>
-    //   ));
-    //console.log(attendeeDetails)
     const handleNavigate = (id) => {
         navigate(`/attendees/${id}`)
     }
@@ -28,7 +21,7 @@ const AttendeesList = () => {
               <li key={attendee.id}>
                 {/* Use onClick to trigger navigation */}
                 <span onClick={() => handleNavigate(attendee.id)}>
-                 {attendee.last_name}, {attendee.first_name}
+                 {attendee.last_name}, {attendee.first_name} - {attendee.organization}
                 </span>
               </li>
             ))}

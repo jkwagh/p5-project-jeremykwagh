@@ -148,5 +148,45 @@ class ActivityById(Resource):
         
 api.add_resource(ActivityById, '/activities/<int:id>')
 
+class AllSpeakers(Resource):
+    
+    def get(self):
+        response_body = [speaker.to_dict() for speaker in Speaker.query.all()]
+        return make_response(response_body, 200)
+        
+    def post(self):
+        try:
+            new_speaker = Speaker(first_name=request.json.get('first_name'), last_name=request.json.get('last_name'), organization=request.json.get('organization'), phone=request.json.get('phone'), email=request.json.get('email'), address=request.json.get('address'), password=request.json.get('password'), subject=request.json.get('subject'))
+        except:
+            response_body = {
+                "error": "Speaker could not be added"
+            }
+            return make_response(response_body, 400)
+
+api.add_resource(AllSpeakers, '/speakers')
+
+class SpeakerById(Resource):
+    
+    def get(self, id):
+        speaker = Speaker.query.filter(Speaker.id == id).first()
+        
+        if speaker:
+            response_body = speaker.to_dict()
+            return make_response(response_body, 200)
+        else: 
+            response_body = {
+                'error': 'Speaker not found'
+            }
+    
+    def patch(self, id):
+        pass
+    
+    def delete(self, id):
+        pass
+    
+api.add_resource(SpeakerById, '/speakers/<int:id>')
+        
+    
+
 if __name__ == '__main__': 
     app.run(port=5555, debug=True)
