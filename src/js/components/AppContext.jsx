@@ -11,7 +11,8 @@ export const ApiProvider = ({ children }) => {
     const [attendees, setAttendees] = useState([]);
     const [activities, setActivities] = useState([]);
     const [userToEdit, setUserToEdit] = useState([]);
-    const [ user, setUser ] = useState(null);
+    const [activityToReg, setActivityToReg] = useState([]);
+    const [user, setUser] = useState(null);
     const navigate = useNavigate();
   
     useEffect(() => {
@@ -24,6 +25,16 @@ export const ApiProvider = ({ children }) => {
         fetch('http://localhost:5555/activities')
         .then((resp) => resp.json())
         .then((data) => setActivities(data))
+    }, [])
+
+    useEffect(() => {
+        fetch("/http://localhost:5555/check_session")
+        .then((resp) => {
+            if (resp.ok) {
+                resp.json().then((data) => setUser(data));
+            }
+        })
+        .then(console.log(user));
     }, [])
 
 
@@ -108,7 +119,6 @@ export const ApiProvider = ({ children }) => {
       };
 
     const handleLogin = (user) => {
-        console.log(user)
         fetch('http://localhost:5555/login', {
             method: "POST",
             headers: {
@@ -126,12 +136,27 @@ export const ApiProvider = ({ children }) => {
                 alert("Error: Invalid Login")
             }
         })
-    }
+    };
+
+    const activityData = (id) => {
+        fetch(`http://localhost:5555/activities/${id}`)
+          .then((resp) => {
+            if (!resp.ok) {
+              throw new Error(`Failed to fetch activity data for ID ${id}`);
+            }
+            return resp.json();
+          })
+          .then((data) => setActivityToReg(data))
+          .then(console.log(activityToReg))
+          .catch((error) => {
+            console.error(error);
+          });
+      };
       
 
 
   return (
-    <ApiContext.Provider value={{ postData, patchData, attendees, userToEdit, deleteData, attendeeData, setUserToEdit, activities, handleLogin }}>
+    <ApiContext.Provider value={{ postData, patchData, attendees, userToEdit, deleteData, attendeeData, setUserToEdit, activities, handleLogin, user, activityData, activityToReg, setActivityToReg }}>
       {children}
     </ApiContext.Provider>
   );

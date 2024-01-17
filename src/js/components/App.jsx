@@ -8,6 +8,7 @@ import SignUp from "./Signup";
 import AttendeesList from "./AttendeesList";
 import { ApiProvider } from "./AppContext";
 import Login from "./Login";
+import ActivityPage from "./ActivityPage";
 
 const App = () => {
     return ( 
@@ -20,7 +21,7 @@ const App = () => {
                         <Route path="/attendees/*" element={<AttendeesList />} />
                         <Route path="/attendees/:id" element={<AttendeePage />} />
                         <Route path="/schedule" element={<Schedule />} />
-                        <Route path="/schedule/:id" element={<AttendeePage />} />
+                        <Route path="/schedule/:id" element={<ActivityPage />} />
                         <Route path="/signup" element={<SignUp />} />
                         <Route path="/login" element={<Login />} />
                     </Routes>

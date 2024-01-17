@@ -245,6 +245,16 @@ class Login(Resource):
     
 api.add_resource(Login, '/login')
 
+class CheckSession(Resource):
+    def get(self):
+        attendee = Attendee.query.filter(Attendee.id == session.get('attendee_id')).first()
+        if attendee:
+            return attendee.to_dict()
+        else:
+            return {'message': '401: Not Authorized'}, 401
+
+api.add_resource(CheckSession, '/check_session')
+
 class AllAdmins(Resource):
     def get(self):
         response_body = [admin.to_dict() for admin in Admin.query.all()]

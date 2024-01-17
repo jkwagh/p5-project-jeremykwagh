@@ -5,11 +5,13 @@ import { useApiContext } from "./AppContext";
 
 const Schedule = () => {
      
-    const { activities } = useApiContext();
+    const { activities, user } = useApiContext();
     const navigate = useNavigate();
 
+    console.log(user);
+
     const handleNavigate = (id) => {
-        navigate(`/activities/${id}`)
+        navigate(`/schedule/${id}`)
     }
 
     return (
