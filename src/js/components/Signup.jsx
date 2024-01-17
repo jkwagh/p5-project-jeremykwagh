@@ -31,28 +31,30 @@ const SignUp = () => {
         <div className='signup'>
             <form onSubmit={handleSubmit}>
                 <h2>Sign Up!</h2>
-                <div className='form-group'>
-                    <input type='text' name='first_name' value={formData.first_name} onChange={handleInputchange} placeholder='Enter your First Name!' required />
+                <div class='form-row'>
+                    <div class='col-auto'>
+                        <input type='text' class="form-control" name='first_name' value={formData.first_name} onChange={handleInputchange} placeholder='Enter your First Name!' required />
+                    </div>ß
+                    <div class='col-auto'>
+                        <input type='text' class="form-control" name='last_name' value={formData.last_name} onChange={handleInputchange} placeholder='Enter your Last Name!' required />
+                    </div>
+                    <div class='col-auto'>
+                        <input type='text' class="form-control" name='organization' value={formData.organization} onChange={handleInputchange} placeholder='Enter your Organization Name!' required />
+                    </div>
                 </div>
-                <div className='form-group'>
-                    <input type='text' name='last_name' value={formData.last_name} onChange={handleInputchange} placeholder='Enter your Last Name!' required />
+                <div class='form-group'>
+                    <input type='text' class="form-control" name='phone' value={formData.phone} onChange={handleInputchange} placeholder='Enter your Phone Number!' required />
                 </div>
-                <div className='form-group'>
-                    <input type='text' name='organization' value={formData.organization} onChange={handleInputchange} placeholder='Enter your Organization Name!' required />
+                <div class='form-group'>
+                    <input type='text' class="form-control" name='email' value={formData.email} onChange={handleInputchange} placeholder='Enter your Email Address!' required />
                 </div>
-                <div className='form-group'>
-                    <input type='text' name='phone' value={formData.phone} onChange={handleInputchange} placeholder='Enter your Phone Number!' required />
+                <div class='form-group'>
+                    <input type='text' class="form-control" name='address' value={formData.address} onChange={handleInputchange} placeholder='Enter your Address!' required />
                 </div>
-                <div className='form-group'>
-                    <input type='text' name='email' value={formData.email} onChange={handleInputchange} placeholder='Enter your Email Address!' required />
+                <div class='form-group'>
+                    <input type='text' class="form-control" name='password' value={formData.password} onChange={handleInputchange} placeholder='Enter your Password!' required />
                 </div>
-                <div className='form-group'>
-                    <input type='text' name='address' value={formData.address} onChange={handleInputchange} placeholder='Enter your Address!' required />
-                </div>
-                <div className='form-group'>
-                    <input type='text' name='password' value={formData.password} onChange={handleInputchange} placeholder='Enter your Password!' required />
-                </div>
-                <button type='submit' className='btn'>
+                <button type='submit' class="btn btn-primary">
                     Sign Up!
                 </button>
             </form>

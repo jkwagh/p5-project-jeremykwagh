@@ -21,16 +21,20 @@ const Login = () => {
     }
 
     return <div className="login">
-        <h1>Login Page</h1>
         <form onSubmit={handleSubmit}>
-            <h2 id='title'>login</h2>
-            <div className='login-form'>
-                <input type='text' name='email' value={loginUser.email} onChange={handleInputChange} placeholder='email' required/>
+            <h2 id='title'>Login</h2>
+            <br/>
+            <div class="col-3">
+                <label for="email">Email Address</label>
+                <input type='email' name='email' value={loginUser.email} onChange={handleInputChange} placeholder='Enter Email' class="form-control" id="email" aria-describedby="emailHelp"required/>
             </div>
-            <div className='login-form'>
-                <input type='password' name='password' value={loginUser.password} onChange={handleInputChange} placeholder='password' required/>
+            <br/>
+            <div class="col-3">
+                <label for="password">Password</label>
+                <input type='password' name='password' value={loginUser.password} onChange={handleInputChange} placeholder='Enter Password' class="form-control" id="password" required/>
             </div>
-            <button type="submit" className='btn'>Login</button>
+            <br/>
+            <button type="submit" class="btn btn-primary">Login</button>
         </form>
         
     </div>

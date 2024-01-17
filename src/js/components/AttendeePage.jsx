@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 const AttendeePage = () => {
-    //const { first_name, last_name, organization, phone, email, address, password} = attendee
     const { patchData, userToEdit, deleteData, attendeeData } = useApiContext();
     const { id } = useParams();
     const navigate = useNavigate();
@@ -78,7 +77,7 @@ const AttendeePage = () => {
     return <div>
         <h1>Attendee Details</h1>
         <h2></h2>
-        <button className="btton" onClick={onDeleteClick} value={userToEdit.id}>
+        <button class="btn btn-primary" onClick={onDeleteClick} value={userToEdit.id}>
           Delete User
         </button>
         <form className="edit-form" onSubmit={handleSubmit}>
@@ -110,9 +109,9 @@ const AttendeePage = () => {
                 <input type="text" name="password" placeholder={userToEdit.password} defaultValue={userToEdit.password} onChange={onChange}/>
             </label>
             <br />
-          <button className= "btton"type="submit">Submit</button>
+          <button class="btn btn-primary" type="submit">Submit</button>
         </form>
-        <button onClick={() => navigate('/attendees')}>Back to Attendees List</button>
+        <button class="btn btn-primary" onClick={() => navigate('/attendees')}>Back to Attendees List</button>
     </div>
 }
 

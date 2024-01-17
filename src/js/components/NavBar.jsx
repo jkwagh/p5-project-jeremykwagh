@@ -1,34 +1,33 @@
 import React from "react";
 import { Link, useNavigate } from 'react-router-dom'; 
+import * as bootstrap from 'bootstrap'
 
 const NavBar = () =>{
     return <div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/#/">Navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            {/* <div className="logo" onClick={() => Navigate('/home')}>
-                NavBar
-            </div> */}
-            <ul>
-                <li className="Home">
-                    <Link to="/" className="NavBarLinks">Home</Link>
+        <a class="navbar-brand" href="/#">Your Brand</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/#">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li className="Schedule">
-                    <Link to="/schedule" className="NavBarLinks">Schedule</Link>
+                <li class="nav-item">
+                    <a class="nav-link" href="/#/schedule">Schedule</a>
                 </li>
-                <li className="Attendees">
-                    <Link to="/attendees" className="NavBarLinks">Attendees</Link>
+                <li class="nav-item">
+                    <a class="nav-link" href="/#/login">Login</a>
                 </li>
-                <li className="Login">
-                    <Link to="/login" className="NavBarLinks">Login</Link>
+                <li class="nav-item">
+                    <a class="nav-link" href="/#/signup">Signup</a>
                 </li>
-                <li className="SignUp">
-                    <Link to="/signup" className="NavBarLinks">Signup</Link>
+                <li class="nav-item">
+                    <a class="nav-link" href="/#/attendees">Attendees</a>
                 </li>
             </ul>
-
+        </div>
         </nav>
     </div>
 }
