@@ -9,7 +9,7 @@ from flask_restful import Api, Resource
 # Local imports
 from config import app, db, api, migrate
 # Add your model imports
-from models import Attendee, Activity, Speaker, Event, ActivityAttendee
+from models import Attendee, Activity, Speaker, Event, ActivityAttendee, Admin
 
 @app.route('/')
 def index():
@@ -242,8 +242,25 @@ class Login(Resource):
             response_body = {
                 'error': 'Invalid email address!'
             }
-        
+    
 api.add_resource(Login, '/login')
+
+class AllAdmins(Resource):
+    def get(self):
+        response_body = [admin.to_dict() for admin in Admin.query.all()]
+        return make_response(response_body, 200)
+    
+    def post(self):
+        try:
+            new_admin = Admin(first_name=request.json.get('first_name'), last_name=request.json.get('last_name'), email=request.json.get('email'), password=request.json.get('password'), access_level=request.json.get('access_level'))
+            return make_response(new_admin.to_dict(), 201)
+        except:
+            response_body = {
+                'error': 'Admin could not be created'
+            }
+            return make_response(response_body, 400)
+
+api.add_resource(AllAdmins, '/admins')
         
 
 if __name__ == '__main__': 

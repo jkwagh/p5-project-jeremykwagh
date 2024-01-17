@@ -11,7 +11,7 @@ export const ApiProvider = ({ children }) => {
     const [attendees, setAttendees] = useState([]);
     const [activities, setActivities] = useState([]);
     const [userToEdit, setUserToEdit] = useState([]);
-    const [loginUser, setLoginUser] = useState([]);
+    const [ user, setUser ] = useState(null);
     const navigate = useNavigate();
   
     useEffect(() => {
@@ -107,19 +107,20 @@ export const ApiProvider = ({ children }) => {
           });
       };
 
-    const handleLogin = (login) => {
+    const handleLogin = (user) => {
+        console.log(user)
         fetch('http://localhost:5555/login', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(login) 
+            body: JSON.stringify(user) 
         })
         .then((resp) => {
             if(resp.ok){
                 resp.json().then(data => {
-                    setLoginUser(data)
-                })
+                    setUser(data)
+                }).then(() => navigate('/schedule'))
             }
             else if(resp.status ===401){
                 alert("Error: Invalid Login")
@@ -130,7 +131,7 @@ export const ApiProvider = ({ children }) => {
 
 
   return (
-    <ApiContext.Provider value={{ postData, patchData, attendees, userToEdit, deleteData, attendeeData, setUserToEdit, activities}}>
+    <ApiContext.Provider value={{ postData, patchData, attendees, userToEdit, deleteData, attendeeData, setUserToEdit, activities, handleLogin }}>
       {children}
     </ApiContext.Provider>
   );

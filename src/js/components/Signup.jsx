@@ -24,7 +24,6 @@ const SignUp = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         postData(formData);
-        navigate('/');
     }
 
     
