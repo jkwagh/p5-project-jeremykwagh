@@ -40,7 +40,7 @@ const ActivityPage = () => {
         <h2>{activityToReg.name}</h2>
         <h3>{activityToReg.topic}</h3>
         <p>{activityToReg.location}, {activityToReg.time}</p>
-        <button onClick={handleClick}>Register</button>
+        <button class="btn btn-primary" onClick={handleClick}>Register</button>
     </div>
 }
 

@@ -19,12 +19,11 @@ const Schedule = () => {
           <ul>
             {activities.map((activity) => (
               <dl key={activity.id}>
-                {/* Use onClick to trigger navigation */}
                 <dt class="col-sm-3"><span >
                  {activity.name}
                 </span></dt>
                 <dd class="col-sm-9">{activity.location}, {activity.time}, {activity.topic}</dd>
-                <button onClick={() => handleNavigate(activity.id)}>Details</button>
+                <button class="btn btn-primary" onClick={() => handleNavigate(activity.id)}>Details</button>
               </dl>
             ))}
           </ul>

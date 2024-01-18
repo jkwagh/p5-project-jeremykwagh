@@ -25,16 +25,16 @@ const Login = () => {
             <h2 id='title'>Login</h2>
             <br/>
             <div class="col-3">
-                <label for="email">Email Address</label>
+                <label for="email" class="form-label">Email Address</label>
                 <input type='email' name='email' value={loginUser.email} onChange={handleInputChange} placeholder='Enter Email' class="form-control" id="email" aria-describedby="emailHelp"required/>
             </div>
             <br/>
             <div class="col-3">
-                <label for="password">Password</label>
+                <label for="password" class="form-label">Password</label>
                 <input type='password' name='password' value={loginUser.password} onChange={handleInputChange} placeholder='Enter Password' class="form-control" id="password" required/>
             </div>
             <br/>
-            <button type="submit" class="btn btn-primary col-3">Login</button>
+            <button type="submit" class="btn btn-primary">Login</button>
         </form>
         
     </div>

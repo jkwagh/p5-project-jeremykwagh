@@ -76,42 +76,47 @@ const AttendeePage = () => {
 
     return <div>
         <h1>Attendee Details</h1>
-        <h2></h2>
-        <button class="btn btn-primary" onClick={onDeleteClick} value={userToEdit.id}>
-          Delete User
-        </button>
-        <form className="edit-form" onSubmit={handleSubmit}>
-            <label>First Name
-                <input type="text" name="first_name" placeholder={userToEdit.first_name} defaultValue={userToEdit.first_name} onChange={onChange}/>
-            </label>
-            <br />
-            <label>Last Name
-                <input type="text" name="last_name" placeholder={userToEdit.last_name} defaultValue={userToEdit.last_name} onChange={onChange}/>
-            </label>
-            <br />
-            <label>Organization
-                <input type="text" name="organization" placeholder={userToEdit.organization} defaultValue={userToEdit.organization} onChange={onChange}/>
-            </label>
-            <br />
-            <label>Phone
-                <input type="text" name="phone" placeholder={userToEdit.phone} defaultValue={userToEdit.phone} onChange={onChange}/>
-            </label>
-            <br />
-            <label>Email
-                <input type="text" name="email" placeholder={userToEdit.email} defaultValue={userToEdit.email} onChange={onChange}/>
-            </label>
-            <br />
-            <label>Address
-                <input type="text" name="address" placeholder={userToEdit.address} defaultValue={userToEdit.address} onChange={onChange}/>
-            </label>
-            <br />
-            <label>Password
-                <input type="text" name="password" placeholder={userToEdit.password} defaultValue={userToEdit.password} onChange={onChange}/>
-            </label>
-            <br />
-          <button class="btn btn-primary" type="submit">Submit</button>
+        <form class="row g-3" onSubmit={handleSubmit}>
+            <div class="col-md-4">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-control" name="first_name" placeholder={userToEdit.first_name} defaultValue={userToEdit.first_name} onChange={onChange}/>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-control" name="last_name" placeholder={userToEdit.last_name} defaultValue={userToEdit.last_name} onChange={onChange}/>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Organization</label>
+                <input type="text" class="form-control" name="organization" placeholder={userToEdit.organization} defaultValue={userToEdit.organization} onChange={onChange}/>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label">Phone</label>
+                <input type="text" class="form-control" name="phone" placeholder={userToEdit.phone} defaultValue={userToEdit.phone} onChange={onChange}/>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label">Email</label>
+                <input type="text" class="form-control" name="email" placeholder={userToEdit.email} defaultValue={userToEdit.email} onChange={onChange}/>
+            </div>
+            <div class="col-md-3">
+                <label>Address</label>
+                <input type="text" class="form-control" name="address" placeholder={userToEdit.address} defaultValue={userToEdit.address} onChange={onChange}/>
+            </div>
+            <div class="col-md-2">
+                <label>Password</label>
+                <input type="text" class="form-control" name="password" placeholder={userToEdit.password} defaultValue={userToEdit.password} onChange={onChange}/>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary col-md-1" type="submit">Submit</button>
+            </div>
         </form>
-        <button class="btn btn-primary" onClick={() => navigate('/attendees')}>Back to Attendees List</button>
+        <br/>
+        <div class="col-12">
+            <button class="btn btn-primary" onClick={onDeleteClick} value={userToEdit.id}>
+            Delete User
+            </button>
+            <br/>
+            <button class="btn btn-primary" onClick={() => navigate('/attendees')}>Back to Attendees List</button>
+        </div>
     </div>
 }
 
