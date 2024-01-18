@@ -22,7 +22,7 @@ const AttendeesList = () => {
                 <dt class="col-sm-3"><span>{attendee.last_name}, {attendee.first_name}
                 </span></dt>
                 <dd class="col-sm-9">{attendee.organization}</dd>
-                <button class="btn btn-primary" onClick={() => handleNavigate(attendee.id)}>Details</button>
+                <button class="btn btn-sm btn-secondary fw-bold border-white bg-white" onClick={() => handleNavigate(attendee.id)}>Details</button>
               </dl>
             ))}
           </ul>

@@ -1,5 +1,6 @@
 import { React, useContext, useState } from 'react';
 import { useApiContext } from './AppContext';
+import "/scss/styles.scss";
 
 const Login = () => {
 
@@ -21,9 +22,8 @@ const Login = () => {
     }
 
     return <div className="login">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} class="px-3">
             <h2 id='title'>Login</h2>
-            <br/>
             <div class="col-3">
                 <label for="email" class="form-label">Email Address</label>
                 <input type='email' name='email' value={loginUser.email} onChange={handleInputChange} placeholder='Enter Email' class="form-control" id="email" aria-describedby="emailHelp"required/>
@@ -34,7 +34,9 @@ const Login = () => {
                 <input type='password' name='password' value={loginUser.password} onChange={handleInputChange} placeholder='Enter Password' class="form-control" id="password" required/>
             </div>
             <br/>
-            <button type="submit" class="btn btn-primary">Login</button>
+            <p class="lead">
+                <button type="submit" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Login</button>
+            </p>
         </form>
         
     </div>

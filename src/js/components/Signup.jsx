@@ -62,7 +62,7 @@ const SignUp = () => {
                     <input type='text' class="form-control" name='password' value={formData.password} onChange={handleInputchange} placeholder='Enter your Password!' required />
                 </div>
                 <div class="col-1">
-                    <button type='submit' class="btn btn-primary">
+                    <button type='submit' class="btn btn-lg btn-secondary fw-bold border-white bg-white">
                         Sign Up!
                     </button>
                 </div>
