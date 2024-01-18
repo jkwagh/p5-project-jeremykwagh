@@ -4,11 +4,10 @@ import { useApiContext } from "./AppContext";
 
 
 const Schedule = () => {
-     
     const { activities, user } = useApiContext();
     const navigate = useNavigate();
 
-    console.log(user);
+    console.log(user)
 
     const handleNavigate = (id) => {
         navigate(`/schedule/${id}`)
@@ -19,15 +18,16 @@ const Schedule = () => {
           <h2>Schedule</h2>
           <ul>
             {activities.map((activity) => (
-              <li key={activity.id}>
+              <dl key={activity.id}>
                 {/* Use onClick to trigger navigation */}
-                <span onClick={() => handleNavigate(activity.id)}>
-                 {activity.name}, {activity.location}, {activity.time}, {activity.topic}
-                </span>
-              </li>
+                <dt class="col-sm-3"><span >
+                 {activity.name}
+                </span></dt>
+                <dd class="col-sm-9">{activity.location}, {activity.time}, {activity.topic}</dd>
+                <button onClick={() => handleNavigate(activity.id)}>Details</button>
+              </dl>
             ))}
           </ul>
-          
         </div>
       );
 }

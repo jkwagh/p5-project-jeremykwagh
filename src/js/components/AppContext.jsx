@@ -11,6 +11,7 @@ export const ApiProvider = ({ children }) => {
     const [attendees, setAttendees] = useState([]);
     const [activities, setActivities] = useState([]);
     const [userToEdit, setUserToEdit] = useState([]);
+    const [ activityattendee, setActivityAttendee] = useState([]);
     const [activityToReg, setActivityToReg] = useState([]);
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
@@ -34,7 +35,6 @@ export const ApiProvider = ({ children }) => {
                 resp.json().then((data) => setUser(data));
             }
         })
-        .then(console.log(user));
     }, [])
 
 
@@ -118,13 +118,13 @@ export const ApiProvider = ({ children }) => {
           });
       };
 
-    const handleLogin = (user) => {
+    const handleLogin = (input) => {
         fetch('http://localhost:5555/login', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(user) 
+            body: JSON.stringify(input) 
         })
         .then((resp) => {
             if(resp.ok){
@@ -147,16 +147,35 @@ export const ApiProvider = ({ children }) => {
             return resp.json();
           })
           .then((data) => setActivityToReg(data))
-          .then(console.log(activityToReg))
           .catch((error) => {
             console.error(error);
           });
       };
+
+    const postActivityAttendee = (input) => {
+        fetch(`http://localhost:5555/activityattendee`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(input)
+        })
+        .then((resp) => {
+            if(resp.ok){
+                resp.json().then(data => {
+                    setActivityAttendee(data)
+                }).then(() => navigate('/schedule'))
+            }
+            else if(resp.status ===401){
+                alert("Error: Unable to Register")
+            }
+        })
+    }
       
 
 
   return (
-    <ApiContext.Provider value={{ postData, patchData, attendees, userToEdit, deleteData, attendeeData, setUserToEdit, activities, handleLogin, user, activityData, activityToReg, setActivityToReg }}>
+    <ApiContext.Provider value={{ postData, patchData, attendees, userToEdit, deleteData, attendeeData, setUserToEdit, activities, handleLogin, user, activityData, activityToReg, setActivityToReg, postActivityAttendee }}>
       {children}
     </ApiContext.Provider>
   );

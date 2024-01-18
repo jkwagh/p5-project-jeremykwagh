@@ -31,7 +31,7 @@ const SignUp = () => {
         <div className='signup'>
             <form onSubmit={handleSubmit}>
                 <h2>Sign Up!</h2>
-                <div class='form-row'>
+                <div class='row'>
                     <div class='col-auto'>
                         <input type='text' class="form-control" name='first_name' value={formData.first_name} onChange={handleInputchange} placeholder='Enter your First Name!' required />
                     </div>ß

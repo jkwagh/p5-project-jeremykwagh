@@ -18,12 +18,12 @@ const AttendeesList = () => {
           <h2>Attendees List</h2>
           <ul>
             {attendees.map((attendee) => (
-              <li key={attendee.id}>
+              <dd key={attendee.id}>
                 {/* Use onClick to trigger navigation */}
                 <span onClick={() => handleNavigate(attendee.id)}>
                  {attendee.last_name}, {attendee.first_name} - {attendee.organization}
                 </span>
-              </li>
+              </dd>
             ))}
           </ul>
           
