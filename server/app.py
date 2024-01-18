@@ -58,7 +58,7 @@ class AttendeeById(Resource):
             
             db.session.commit()
             
-            response_body = attendee.to_dict()
+            response_body = attendee.to_dict(only=('id', 'first_name', 'last_name', 'organization', 'phone', 'email', 'address'))
             return make_response(response_body, 200)
         else:
             response_body = {
