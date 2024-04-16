@@ -18,15 +18,22 @@ const Schedule = () => {
           <h2>Schedule</h2>
           <ul>
             {activities.map((activity) => (
-              <dl key={activity.id}>
-                <dt class="col-sm-3"><span >
-                 {activity.name}
-                </span></dt>
-                <dd class="col-sm-9">{activity.location}, {activity.time}, {activity.topic}</dd>
-                <button class="btn btn-sm btn-secondary fw-bold border-white bg-white" onClick={() => handleNavigate(activity.id)}>Details</button>
-              </dl>
+              <div key={activity.id} className="row">
+                <div className="col-sm-6">
+                  <div>
+                    <strong >{activity.name}</strong>
+                  </div>
+                  <div>{activity.location}, {activity.time}, {activity.topic}</div>
+                </div>
+                <div className="col-sm-3">
+                  <button class="btn btn-sm btn-secondary fw-bold border-white bg-white" onClick={() => handleNavigate(activity.id)}>Details</button>
+                </div>
+                <div className="activity-break"></div>
+              </div>
             ))}
+            
           </ul>
+          
         </div>
       );
 }
