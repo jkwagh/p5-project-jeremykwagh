@@ -10,7 +10,7 @@ const ActivityPage = () => {
 
 
     useEffect(() => {
-        console.log(id);
+        console.log(activityData(id));
     }, [])
 
     // const [postData, setPostData] = useState({
@@ -40,7 +40,7 @@ const ActivityPage = () => {
     // }, [])
 
     const handleClick = () => {
-        postActivityAttendee(postData)
+        console.log(activityData)
     }
 
 
