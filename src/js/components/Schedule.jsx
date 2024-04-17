@@ -10,7 +10,8 @@ const Schedule = () => {
     console.log(user)
 
     const handleNavigate = (id) => {
-        navigate(`/schedule/${id}`)
+      console.log(id)
+      navigate(`/schedule/${id}`)
     }
 
     return (

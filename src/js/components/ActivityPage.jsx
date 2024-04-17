@@ -7,22 +7,30 @@ const ActivityPage = () => {
     const { activityData, activityToReg, user, postActivityAttendee } = useApiContext();
     const { id } = useParams();
     const navigate = useNavigate();
-    const [postData, setPostData] = useState({
-        activity_id: "",
-        attendee_id: "",
-    })
-    const activity_id = activityToReg.id
-    const attendee_id = user.id
+
 
     useEffect(() => {
-        activityData(id);
-        console.log(activity_id)
-        console.log(attendee_id)
-        setPostData({
-            activity_id: activity_id,
-            attendee_id: attendee_id
-        })
-    }, [activity_id, attendee_id])
+        console.log(id);
+    }, [])
+
+    // const [postData, setPostData] = useState({
+    //     activity_id: "",
+    //     attendee_id: "",
+    // })
+    // const activity_id = activityToReg.id
+    // const attendee_id = user.id
+
+
+    
+    // useEffect(() => {
+    //     activityData(id);
+    //     console.log(activity_id)
+    //     console.log(attendee_id)
+    //     setPostData({
+    //         activity_id: activity_id,
+    //         attendee_id: attendee_id
+    //     })
+    // }, [activity_id, attendee_id])
 
     // useEffect(() => {
     //     setPostData({
@@ -40,7 +48,7 @@ const ActivityPage = () => {
         <h2>{activityToReg.name}</h2>
         <h3>{activityToReg.topic}</h3>
         <p>{activityToReg.location}, {activityToReg.time}</p>
-        <button class="btn btn-primary" onClick={handleClick}>Register</button>
+        <button className="btn btn-primary" onClick={handleClick}>Register</button>
     </div>
 }
 
