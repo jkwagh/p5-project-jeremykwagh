@@ -3,6 +3,7 @@ import { useApiContext } from "./AppContext";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+
 const AttendeePage = () => {
     const { patchData, userToEdit, deleteData, attendeeData } = useApiContext();
     const { id } = useParams();
@@ -76,46 +77,46 @@ const AttendeePage = () => {
 
     return <div>
         <h1>Attendee Details</h1>
-        <form class="row g-3" onSubmit={handleSubmit}>
-            <div class="col-md-4">
-                <label class="form-label">First Name</label>
+        <form className="row g-3" onSubmit={handleSubmit}>
+            <div className="col-md-4">
+                <label className="form-label">First Name</label>
                 <input type="text" class="form-control" name="first_name" placeholder={userToEdit.first_name} defaultValue={userToEdit.first_name} onChange={onChange}/>
             </div>
-            <div class="col-md-4">
-                <label class="form-label">Last Name</label>
-                <input type="text" class="form-control" name="last_name" placeholder={userToEdit.last_name} defaultValue={userToEdit.last_name} onChange={onChange}/>
+            <div className="col-md-4">
+                <label className="form-label">Last Name</label>
+                <input type="text" className="form-control" name="last_name" placeholder={userToEdit.last_name} defaultValue={userToEdit.last_name} onChange={onChange}/>
             </div>
-            <div class="col-md-4">
-                <label class="form-label">Organization</label>
-                <input type="text" class="form-control" name="organization" placeholder={userToEdit.organization} defaultValue={userToEdit.organization} onChange={onChange}/>
+            <div className="col-md-4">
+                <label className="form-label">Organization</label>
+                <input type="text" className="form-control" name="organization" placeholder={userToEdit.organization} defaultValue={userToEdit.organization} onChange={onChange}/>
             </div>
-            <div class="col-md-2">
-                <label class="form-label">Phone</label>
-                <input type="text" class="form-control" name="phone" placeholder={userToEdit.phone} defaultValue={userToEdit.phone} onChange={onChange}/>
+            <div className="col-md-2">
+                <label className="form-label">Phone</label>
+                <input type="text" className="form-control" name="phone" placeholder={userToEdit.phone} defaultValue={userToEdit.phone} onChange={onChange}/>
             </div>
-            <div class="col-md-2">
-                <label class="form-label">Email</label>
-                <input type="text" class="form-control" name="email" placeholder={userToEdit.email} defaultValue={userToEdit.email} onChange={onChange}/>
+            <div className="col-md-2">
+                <label className="form-label">Email</label>
+                <input type="text" className="form-control" name="email" placeholder={userToEdit.email} defaultValue={userToEdit.email} onChange={onChange}/>
             </div>
-            <div class="col-md-3">
+            <div className="col-md-3">
                 <label>Address</label>
-                <input type="text" class="form-control" name="address" placeholder={userToEdit.address} defaultValue={userToEdit.address} onChange={onChange}/>
+                <input type="text" className="form-control" name="address" placeholder={userToEdit.address} defaultValue={userToEdit.address} onChange={onChange}/>
             </div>
-            <div class="col-md-2">
+            <div className="col-md-2">
                 <label>Password</label>
-                <input type="text" class="form-control" name="password" placeholder={userToEdit.password} defaultValue={userToEdit.password} onChange={onChange}/>
+                <input type="text" className="form-control" name="password" placeholder={userToEdit.password} defaultValue={userToEdit.password} onChange={onChange}/>
             </div>
-            <div class="col-12">
-                <button class="btn btn-primary col-md-1" type="submit">Submit</button>
+            <div className="col-12">
+                <button className="btn btn-primary col-md-1" type="submit">Submit</button>
             </div>
         </form>
         <br/>
-        <div class="col-12">
-            <button class="btn btn-primary" onClick={onDeleteClick} value={userToEdit.id}>
+        <div className="col-12">
+            <button className="btn btn-primary" onClick={onDeleteClick} value={userToEdit.id}>
             Delete User
             </button>
             <br/>
-            <button class="btn btn-primary" onClick={() => navigate('/attendees')}>Back to Attendees List</button>
+            <button className="btn btn-primary" onClick={() => navigate('/attendees')}>Back to Attendees List</button>
         </div>
     </div>
 }

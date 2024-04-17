@@ -26,7 +26,7 @@ const Schedule = () => {
                   <div>{activity.location}, {activity.time}, {activity.topic}</div>
                 </div>
                 <div className="col-sm-3">
-                  <button class="btn btn-sm btn-secondary fw-bold border-white bg-white" onClick={() => handleNavigate(activity.id)}>Details</button>
+                  <button className="btn btn-sm btn-secondary fw-bold border-white bg-white" onClick={() => handleNavigate(activity.id)}>Details</button>
                 </div>
                 <div className="activity-break"></div>
               </div>
