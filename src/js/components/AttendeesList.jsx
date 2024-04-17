@@ -18,12 +18,16 @@ const AttendeesList = () => {
           <h2>Attendees List</h2>
           <ul>
             {attendees.map((attendee) => (
-              <dl key={attendee.id}>
-                <dt class="col-sm-3"><span>{attendee.last_name}, {attendee.first_name}
-                </span></dt>
-                <dd class="col-sm-9">{attendee.organization}</dd>
-                <button class="btn btn-sm btn-secondary fw-bold border-white bg-white" onClick={() => handleNavigate(attendee.id)}>Details</button>
-              </dl>
+              <div key={attendee.id} className="row">
+                <div className="col-sm-6">
+                  <div><strong>{attendee.last_name}, {attendee.first_name}</strong></div>
+                  <div>{attendee.organization}</div>
+                </div>
+                <div className="col-sm-3">
+                  <button class="btn btn-sm btn-secondary fw-bold border-white bg-white" onClick={() => handleNavigate(attendee.id)}>Details</button>
+                </div>
+                <div className="attendee-break"></div>
+              </div>
             ))}
           </ul>
           
