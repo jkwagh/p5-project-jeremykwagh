@@ -12,7 +12,7 @@ const AttendeesList = () => {
     const handleNavigate = (id) => {
         navigate(`/attendees/${id}`)
     }
-
+          
     return (
         <div>
           <h2>Attendees List</h2>
